@@ -7,9 +7,10 @@ class CatsController < ApplicationController
         # another way to do this is like this; you can also specify
         # other flags like saying this should be an attachment, etc...
         # rails_blob_path(@cat.image, disposition: 'attachment')
+        @cat.image.attach(cat_params[:image])
         render json: {
             name: @cat.name,
-            url: @cat.image.service_url
+            url: url_for(@cat.image)
         }
     end
 
